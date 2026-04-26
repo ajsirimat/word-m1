@@ -7,403 +7,54 @@
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --pink:#ff6fae;
-      --blue:#5aa7ff;
-      --purple:#8b5cf6;
-      --dark:#172033;
-      --soft:#f7f9ff;
-      --card:#ffffff;
-      --muted:#667085;
-      --border:#e6eaf2;
-      --shadow:0 18px 45px rgba(20, 35, 80, .14);
-      --radius:24px;
+      --pink:#ff6fae; --blue:#5aa7ff; --purple:#8b5cf6;
+      --dark:#172033; --muted:#667085; --border:#e6eaf2;
+      --card:#ffffff; --soft:#f7f9ff; --shadow:0 18px 45px rgba(20,35,80,.14);
     }
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0;
-      font-family:'Prompt',sans-serif;
-      color:var(--dark);
-      background:
-        radial-gradient(circle at top left, rgba(255,111,174,.22), transparent 32%),
-        radial-gradient(circle at top right, rgba(90,167,255,.22), transparent 34%),
-        linear-gradient(180deg,#ffffff 0%,#f6f8ff 100%);
+      margin:0;font-family:'Prompt',sans-serif;color:var(--dark);
+      background:radial-gradient(circle at top left,rgba(255,111,174,.20),transparent 30%),
+      radial-gradient(circle at top right,rgba(90,167,255,.22),transparent 34%),linear-gradient(180deg,#fff,#f6f8ff);
     }
-
     a{text-decoration:none;color:inherit}
-
-    .navbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter:blur(14px);
-      background:rgba(255,255,255,.78);
-      border-bottom:1px solid rgba(230,234,242,.75);
-    }
-
-    .nav-inner{
-      max-width:1180px;
-      margin:auto;
-      padding:14px 22px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:700;
-    }
-
-    .logo{
-      width:46px;
-      height:46px;
-      border-radius:16px;
-      display:grid;
-      place-items:center;
-      color:white;
-      font-size:24px;
-      background:linear-gradient(135deg,var(--pink),var(--blue));
-      box-shadow:0 10px 24px rgba(90,167,255,.28);
-    }
-
-    .menu{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      font-size:14px;
-    }
-
-    .menu a{
-      padding:9px 14px;
-      border-radius:999px;
-      color:#42526b;
-      transition:.2s;
-    }
-
-    .menu a:hover{
-      background:#eef4ff;
-      color:#1d4ed8;
-    }
-
-    .hero{
-      max-width:1180px;
-      margin:0 auto;
-      padding:64px 22px 34px;
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:34px;
-      align-items:center;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:9px 15px;
-      border-radius:999px;
-      background:#fff;
-      border:1px solid var(--border);
-      color:#3b5b93;
-      font-size:14px;
-      box-shadow:0 8px 24px rgba(20,35,80,.06);
-    }
-
-    h1{
-      font-size:clamp(34px,5vw,64px);
-      line-height:1.08;
-      margin:18px 0;
-      letter-spacing:-1px;
-    }
-
-    .gradient-text{
-      background:linear-gradient(135deg,var(--pink),var(--purple),var(--blue));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
-    .lead{
-      font-size:18px;
-      line-height:1.8;
-      color:#56637a;
-      max-width:690px;
-    }
-
-    .hero-actions{
-      margin-top:28px;
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:13px 20px;
-      border-radius:16px;
-      font-weight:600;
-      border:1px solid transparent;
-      transition:.2s;
-      cursor:pointer;
-    }
-
-    .btn-primary{
-      color:white;
-      background:linear-gradient(135deg,var(--pink),var(--blue));
-      box-shadow:0 14px 28px rgba(90,167,255,.28);
-    }
-
-    .btn-secondary{
-      color:#2453a7;
-      background:white;
-      border-color:var(--border);
-    }
-
+    .navbar{position:sticky;top:0;z-index:99;background:rgba(255,255,255,.82);backdrop-filter:blur(15px);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:1180px;margin:auto;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .logo{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;color:#fff;font-size:24px;background:linear-gradient(135deg,var(--pink),var(--blue));box-shadow:0 10px 24px rgba(90,167,255,.25)}
+    .menu{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;font-size:14px}
+    .menu button{border:0;background:transparent;padding:9px 13px;border-radius:999px;font-family:inherit;color:#41526b;cursor:pointer;transition:.2s}
+    .menu button:hover,.menu button.active{background:#eef4ff;color:#1d4ed8}
+    .hero{max-width:1180px;margin:auto;padding:58px 22px 30px;display:grid;grid-template-columns:1.08fr .92fr;gap:30px;align-items:center}
+    .badge{display:inline-flex;padding:9px 15px;border-radius:999px;background:#fff;border:1px solid var(--border);box-shadow:0 8px 24px rgba(20,35,80,.06);font-size:14px;color:#3b5b93}
+    h1{font-size:clamp(34px,5vw,62px);line-height:1.08;margin:18px 0;letter-spacing:-1px}
+    .gradient-text{background:linear-gradient(135deg,var(--pink),var(--purple),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{font-size:18px;line-height:1.8;color:#56637a;max-width:720px}
+    .hero-actions{margin-top:26px;display:flex;gap:13px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:16px;font-weight:600;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:.2s}
+    .btn-primary{color:white;background:linear-gradient(135deg,var(--pink),var(--blue));box-shadow:0 14px 28px rgba(90,167,255,.28)}
+    .btn-secondary{color:#2453a7;background:white;border-color:var(--border)}
     .btn:hover{transform:translateY(-2px)}
-
-    .hero-card{
-      background:rgba(255,255,255,.86);
-      border:1px solid rgba(230,234,242,.9);
-      border-radius:32px;
-      padding:26px;
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-card:before{
-      content:"";
-      position:absolute;
-      inset:-80px -80px auto auto;
-      width:180px;
-      height:180px;
-      border-radius:999px;
-      background:rgba(255,111,174,.22);
-    }
-
-    .screen{
-      position:relative;
-      background:#18233a;
-      color:white;
-      border-radius:24px;
-      padding:20px;
-      overflow:hidden;
-      min-height:330px;
-    }
-
-    .screen-top{
-      display:flex;
-      gap:7px;
-      margin-bottom:16px;
-    }
-
-    .dot{width:11px;height:11px;border-radius:999px;background:#fff;opacity:.65}
-
-    .doc-preview{
-      background:white;
-      color:#26364d;
-      border-radius:18px;
-      padding:18px;
-      box-shadow:0 20px 40px rgba(0,0,0,.2);
-    }
-
-    .doc-title{
-      font-weight:700;
-      font-size:18px;
-      margin-bottom:12px;
-      color:#1e3a8a;
-    }
-
-    .line{height:10px;border-radius:999px;background:#e9eef9;margin:10px 0}
-    .line.w70{width:70%}.line.w85{width:85%}.line.w55{width:55%}
-
-    .tool-row{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:10px;
-      margin-top:18px;
-    }
-
-    .tool{
-      border-radius:16px;
-      background:linear-gradient(180deg,#f7faff,#fff);
-      border:1px solid #e7ecf7;
-      padding:12px 8px;
-      text-align:center;
-      font-size:13px;
-      color:#48617f;
-    }
-
-    section{
-      max-width:1180px;
-      margin:0 auto;
-      padding:54px 22px;
-    }
-
-    .section-title{
-      text-align:center;
-      margin-bottom:30px;
-    }
-
-    .section-title h2{
-      font-size:clamp(26px,3.5vw,42px);
-      margin:0 0 10px;
-    }
-
-    .section-title p{
-      color:var(--muted);
-      margin:0;
-      font-size:16px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:20px;
-    }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:24px;
-      box-shadow:0 14px 35px rgba(20,35,80,.08);
-      transition:.2s;
-    }
-
-    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-
-    .icon{
-      width:56px;
-      height:56px;
-      border-radius:18px;
-      display:grid;
-      place-items:center;
-      font-size:27px;
-      margin-bottom:14px;
-      background:linear-gradient(135deg,rgba(255,111,174,.15),rgba(90,167,255,.18));
-    }
-
-    .card h3{margin:0 0 10px;font-size:20px}
-    .card p,.card li{color:#5a667d;line-height:1.75}
-    .card ul{margin:10px 0 0;padding-left:20px}
-
-    .timeline{
-      display:grid;
-      gap:16px;
-    }
-
-    .week{
-      display:grid;
-      grid-template-columns:90px 1fr;
-      gap:14px;
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:18px;
-      box-shadow:0 10px 25px rgba(20,35,80,.06);
-    }
-
-    .week-number{
-      border-radius:18px;
-      color:white;
-      display:grid;
-      place-items:center;
-      font-weight:700;
-      background:linear-gradient(135deg,var(--purple),var(--blue));
-      min-height:78px;
-      text-align:center;
-    }
-
-    .week h3{margin:0 0 6px}
-    .week p{margin:0;color:#5d6980;line-height:1.75}
-
-    .activity-box{
-      background:linear-gradient(135deg,#fff0f7,#eef6ff);
-      border:1px solid #f0dff0;
-      border-radius:30px;
-      padding:28px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:22px;
-      align-items:center;
-    }
-
-    .activity-list{
-      display:grid;
-      gap:12px;
-    }
-
-    .activity-item{
-      background:white;
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:15px;
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-    }
-
-    .quiz{
-      display:grid;
-      gap:14px;
-    }
-
-    .quiz details{
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:16px 18px;
-      box-shadow:0 8px 22px rgba(20,35,80,.05);
-    }
-
-    .quiz summary{
-      cursor:pointer;
-      font-weight:600;
-    }
-
-    .quiz p{color:#5d6980;line-height:1.7}
-
-    .footer{
-      margin-top:44px;
-      background:#10192d;
-      color:white;
-      padding:36px 22px;
-      text-align:center;
-    }
-
-    .footer p{margin:8px 0;color:#d6def0}
-
-    .floating{
-      animation:float 4s ease-in-out infinite;
-    }
-
-    @keyframes float{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
-    }
-
-    @media(max-width:900px){
-      .hero,.activity-box{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr 1fr}
-      .menu{display:none}
-    }
-
-    @media(max-width:620px){
-      .grid{grid-template-columns:1fr}
-      .week{grid-template-columns:1fr}
-      .tool-row{grid-template-columns:1fr 1fr}
-      .hero{padding-top:38px}
-    }
+    .hero-card{background:rgba(255,255,255,.88);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:var(--shadow)}
+    .screen{background:#18233a;color:white;border-radius:24px;padding:20px;min-height:315px;overflow:hidden}
+    .screen-top{display:flex;gap:7px;margin-bottom:16px}.dot{width:11px;height:11px;border-radius:999px;background:#fff;opacity:.65}
+    .doc-preview{background:#fff;color:#26364d;border-radius:18px;padding:18px;box-shadow:0 20px 40px rgba(0,0,0,.20)}
+    .doc-title{font-weight:700;font-size:18px;margin-bottom:12px;color:#1e3a8a}.line{height:10px;border-radius:999px;background:#e9eef9;margin:10px 0}.w85{width:85%}.w70{width:70%}.w55{width:55%}
+    .tool-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.tool{border-radius:16px;background:linear-gradient(180deg,#f7faff,#fff);border:1px solid #e7ecf7;padding:12px 8px;text-align:center;font-size:13px;color:#48617f}
+    section{max-width:1180px;margin:auto;padding:54px 22px}.section-title{text-align:center;margin-bottom:28px}.section-title h2{font-size:clamp(26px,3.5vw,42px);margin:0 0 10px}.section-title p{color:var(--muted);margin:0;font-size:16px}
+    .lesson-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}.tab{border:1px solid var(--border);background:#fff;border-radius:20px;padding:16px 10px;text-align:center;cursor:pointer;font-family:inherit;font-weight:700;color:#334155;box-shadow:0 10px 24px rgba(20,35,80,.06);transition:.2s}.tab:hover,.tab.active{transform:translateY(-3px);color:#fff;background:linear-gradient(135deg,var(--purple),var(--blue))}
+    .page{display:none;animation:show .35s ease}.page.active{display:block}@keyframes show{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .lesson-page{background:#fff;border:1px solid var(--border);border-radius:32px;padding:30px;box-shadow:var(--shadow);display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:start}
+    .lesson-cover{border-radius:26px;padding:28px;color:#fff;min-height:420px;background:linear-gradient(135deg,var(--pink),var(--purple),var(--blue));display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}.lesson-cover:after{content:"";position:absolute;right:-50px;bottom:-50px;width:180px;height:180px;border-radius:999px;background:rgba(255,255,255,.18)}
+    .lesson-cover .big-icon{font-size:78px}.lesson-cover h2{font-size:34px;line-height:1.25;margin:18px 0 10px}.lesson-cover p{line-height:1.75;color:#f4f7ff}.lesson-tag{display:inline-flex;width:max-content;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);padding:8px 14px;border-radius:999px;font-weight:600}
+    .content-grid{display:grid;gap:16px}.info-card{border:1px solid var(--border);border-radius:22px;padding:20px;background:linear-gradient(180deg,#fff,#f9fbff)}.info-card h3{margin:0 0 10px;font-size:20px}.info-card p,.info-card li{color:#5b667c;line-height:1.75}.info-card ul{margin:8px 0 0;padding-left:22px}
+    .activity{background:linear-gradient(135deg,#fff0f7,#eef6ff);border:1px solid #f0dff0}.activity h3{color:#1d4ed8}.mini-quiz{display:grid;gap:10px}.choice{padding:12px 14px;border-radius:14px;background:#fff;border:1px solid var(--border)}
+    .nextbar{margin-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.nextbar button{min-width:140px}
+    .overview{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:#fff;border:1px solid var(--border);border-radius:24px;padding:24px;box-shadow:0 14px 35px rgba(20,35,80,.08)}.icon{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;font-size:27px;margin-bottom:14px;background:linear-gradient(135deg,rgba(255,111,174,.15),rgba(90,167,255,.18))}.card p,.card li{color:#5a667d;line-height:1.75}
+    .footer{margin-top:44px;background:#10192d;color:white;padding:36px 22px;text-align:center}.footer p{margin:8px 0;color:#d6def0}
+    @media(max-width:930px){.hero,.lesson-page{grid-template-columns:1fr}.lesson-tabs{grid-template-columns:repeat(2,1fr)}.overview{grid-template-columns:1fr 1fr}.menu{display:none}}
+    @media(max-width:620px){.overview{grid-template-columns:1fr}.tool-row{grid-template-columns:1fr 1fr}.lesson-tabs{grid-template-columns:1fr}.lesson-page{padding:18px}.lesson-cover{min-height:auto}.nav-inner{align-items:flex-start}.brand small{display:block}}
   </style>
 </head>
 <body>
@@ -411,17 +62,15 @@
     <div class="nav-inner">
       <a href="#home" class="brand">
         <div class="logo">📝</div>
-        <div>
-          <div>โปรแกรมประมวลผลคำ</div>
-          <small style="color:#667085;font-weight:500">ชั้นมัธยมศึกษาปีที่ 1</small>
-        </div>
+        <div>โปรแกรมประมวลผลคำ<br><small style="color:#667085;font-weight:500">ชั้นมัธยมศึกษาปีที่ 1</small></div>
       </a>
       <nav class="menu">
-        <a href="#about">เกี่ยวกับรายวิชา</a>
-        <a href="#lessons">บทเรียน</a>
-        <a href="#activities">กิจกรรม</a>
-        <a href="#quiz">แบบทดสอบ</a>
-        <a href="#contact">ติดต่อครู</a>
+        <button onclick="goHome()">หน้าแรก</button>
+        <button onclick="openLesson(1)">บทที่ 1</button>
+        <button onclick="openLesson(2)">บทที่ 2</button>
+        <button onclick="openLesson(3)">บทที่ 3</button>
+        <button onclick="openLesson(4)">บทที่ 4</button>
+        <button onclick="openLesson(5)">บทที่ 5</button>
       </nav>
     </div>
   </header>
@@ -429,31 +78,20 @@
   <main id="home" class="hero">
     <div>
       <span class="badge">💻 เว็บไซต์ประกอบการเรียนรู้สำหรับนักเรียน ม.1</span>
-      <h1>เรียนรู้ <span class="gradient-text">โปรแกรมประมวลผลคำ</span> แบบสนุก ใช้ได้จริง</h1>
-      <p class="lead">
-        ฝึกพิมพ์ จัดรูปแบบเอกสาร แทรกรูปภาพ สร้างตาราง และออกแบบเอกสารอย่างมืออาชีพ
-        เพื่อใช้ทำรายงาน ใบงาน และงานนำเสนอในชีวิตประจำวัน
-      </p>
+      <h1>เรียนรู้ <span class="gradient-text">โปรแกรมประมวลผลคำ</span> แบบ 1 หัวข้อ 1 หน้า</h1>
+      <p class="lead">คลิกเลือกบทเรียนเพื่อเรียนทีละหน้า มีเนื้อหา กิจกรรม และแบบทดสอบสั้น เหมาะสำหรับใช้สอนจริงในห้องเรียน</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#lessons">🚀 เริ่มเรียนเลย</a>
-        <a class="btn btn-secondary" href="#activities">🎯 ดูกิจกรรม</a>
+        <button class="btn btn-primary" onclick="openLesson(1)">🚀 เริ่มเรียนบทที่ 1</button>
+        <a class="btn btn-secondary" href="#lessons">📚 เลือกหัวข้อเรียน</a>
       </div>
     </div>
-
-    <div class="hero-card floating" aria-label="ตัวอย่างเอกสาร">
+    <div class="hero-card">
       <div class="screen">
         <div class="screen-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
         <div class="doc-preview">
           <div class="doc-title">รายงานเรื่อง เทคโนโลยีรอบตัว</div>
-          <div class="line w85"></div>
-          <div class="line w70"></div>
-          <div class="line w55"></div>
-          <div class="tool-row">
-            <div class="tool">ตัวหนา</div>
-            <div class="tool">จัดกลาง</div>
-            <div class="tool">รูปภาพ</div>
-            <div class="tool">ตาราง</div>
-          </div>
+          <div class="line w85"></div><div class="line w70"></div><div class="line w55"></div>
+          <div class="tool-row"><div class="tool">ตัวหนา</div><div class="tool">จัดกลาง</div><div class="tool">รูปภาพ</div><div class="tool">ตาราง</div></div>
         </div>
         <p style="margin:18px 4px 0;color:#dbeafe;line-height:1.7">เป้าหมาย: สร้างเอกสารให้สวย อ่านง่าย และถูกต้องตามรูปแบบ</p>
       </div>
@@ -462,148 +100,120 @@
 
   <section id="about">
     <div class="section-title">
-      <h2>เกี่ยวกับรายวิชา</h2>
-      <p>รายวิชานี้ช่วยให้นักเรียนใช้โปรแกรมประมวลผลคำเพื่อสร้างงานเอกสารได้อย่างมั่นใจ</p>
+      <h2>ภาพรวมรายวิชา</h2>
+      <p>เรียนรู้การสร้างเอกสารด้วยโปรแกรมประมวลผลคำ ตั้งแต่พื้นฐานจนสร้างรายงานได้</p>
     </div>
-    <div class="grid">
-      <article class="card">
-        <div class="icon">🎓</div>
-        <h3>จุดประสงค์การเรียนรู้</h3>
-        <ul>
-          <li>รู้จักส่วนประกอบของโปรแกรมประมวลผลคำ</li>
-          <li>พิมพ์และจัดรูปแบบข้อความได้</li>
-          <li>สร้างเอกสารรายงานอย่างเป็นระเบียบ</li>
-        </ul>
-      </article>
-      <article class="card">
-        <div class="icon">🧩</div>
-        <h3>ทักษะที่จะได้รับ</h3>
-        <ul>
-          <li>การจัดหน้ากระดาษและย่อหน้า</li>
-          <li>การแทรกรูปภาพ ตาราง และสัญลักษณ์</li>
-          <li>การตรวจทานและบันทึกไฟล์</li>
-        </ul>
-      </article>
-      <article class="card">
-        <div class="icon">🏆</div>
-        <h3>ชิ้นงานปลายบท</h3>
-        <p>นักเรียนจะสร้างรายงาน 1 เรื่อง พร้อมปก สารบัญ รูปภาพ ตาราง และจัดรูปแบบเอกสารให้ถูกต้อง</p>
-      </article>
+    <div class="overview">
+      <article class="card"><div class="icon">🎓</div><h3>เป้าหมาย</h3><p>นักเรียนใช้โปรแกรมประมวลผลคำเพื่อสร้าง แก้ไข จัดรูปแบบ และส่งออกเอกสารได้</p></article>
+      <article class="card"><div class="icon">🧩</div><h3>ทักษะสำคัญ</h3><p>การพิมพ์ การจัดข้อความ การจัดหน้า การแทรกรูปภาพ ตาราง และการบันทึกไฟล์</p></article>
+      <article class="card"><div class="icon">🏆</div><h3>ชิ้นงาน</h3><p>สร้างรายงาน 1 เรื่อง มีปก เนื้อหา รูปภาพ ตาราง เลขหน้า และส่งออกเป็น PDF</p></article>
     </div>
   </section>
 
   <section id="lessons">
     <div class="section-title">
-      <h2>แผนบทเรียน</h2>
-      <p>จัดเรียงเนื้อหาจากพื้นฐานไปสู่การสร้างเอกสารจริง</p>
+      <h2>เลือกบทเรียน</h2>
+      <p>รูปแบบใหม่: 1 หัวข้อ = 1 หน้า</p>
     </div>
-    <div class="timeline">
-      <div class="week">
-        <div class="week-number">บทที่ 1</div>
-        <div>
-          <h3>รู้จักโปรแกรมประมวลผลคำ</h3>
-          <p>ความหมาย ประโยชน์ ตัวอย่างโปรแกรม เช่น Microsoft Word, Google Docs และ LibreOffice Writer</p>
+    <div class="lesson-tabs">
+      <button class="tab" id="tab1" onclick="openLesson(1)">บทที่ 1<br>รู้จักโปรแกรม</button>
+      <button class="tab" id="tab2" onclick="openLesson(2)">บทที่ 2<br>จัดรูปแบบข้อความ</button>
+      <button class="tab" id="tab3" onclick="openLesson(3)">บทที่ 3<br>จัดหน้ากระดาษ</button>
+      <button class="tab" id="tab4" onclick="openLesson(4)">บทที่ 4<br>รูปภาพและตาราง</button>
+      <button class="tab" id="tab5" onclick="openLesson(5)">บทที่ 5<br>สร้างรายงาน</button>
+    </div>
+
+    <div id="page1" class="page">
+      <div class="lesson-page">
+        <div class="lesson-cover"><span class="lesson-tag">บทที่ 1</span><div><div class="big-icon">💻</div><h2>รู้จักโปรแกรมประมวลผลคำ</h2><p>เข้าใจความหมาย ประโยชน์ และตัวอย่างโปรแกรมที่ใช้สร้างเอกสาร</p></div></div>
+        <div class="content-grid">
+          <div class="info-card"><h3>ความหมาย</h3><p>โปรแกรมประมวลผลคำ คือ โปรแกรมที่ใช้สำหรับพิมพ์ แก้ไข จัดรูปแบบ บันทึก และพิมพ์เอกสาร เช่น รายงาน จดหมาย ใบงาน และเอกสารประกอบการเรียน</p></div>
+          <div class="info-card"><h3>ประโยชน์</h3><ul><li>พิมพ์งานได้สะดวกและรวดเร็ว</li><li>แก้ไขข้อความได้ง่าย</li><li>จัดรูปแบบเอกสารให้สวยงาม</li><li>บันทึกและแชร์ไฟล์ให้ผู้อื่นได้</li></ul></div>
+          <div class="info-card"><h3>ตัวอย่างโปรแกรม</h3><p>Microsoft Word, Google Docs, LibreOffice Writer</p></div>
+          <div class="info-card activity"><h3>กิจกรรม</h3><p>เปิด Google Docs หรือ Microsoft Word แล้วพิมพ์ “แนะนำตัวเอง” อย่างน้อย 3 บรรทัด</p></div>
+          <div class="info-card"><h3>คำถามทบทวน</h3><div class="mini-quiz"><div class="choice">โปรแกรมประมวลผลคำใช้ทำอะไร?</div><div class="choice">ยกตัวอย่างโปรแกรมประมวลผลคำ 2 โปรแกรม</div></div></div>
         </div>
       </div>
-      <div class="week">
-        <div class="week-number">บทที่ 2</div>
-        <div>
-          <h3>การพิมพ์และจัดรูปแบบข้อความ</h3>
-          <p>การเลือกฟอนต์ ขนาด สี ตัวหนา ตัวเอียง ขีดเส้นใต้ และการจัดตำแหน่งข้อความ</p>
+    </div>
+
+    <div id="page2" class="page">
+      <div class="lesson-page">
+        <div class="lesson-cover"><span class="lesson-tag">บทที่ 2</span><div><div class="big-icon">✍️</div><h2>การพิมพ์และจัดรูปแบบข้อความ</h2><p>เรียนรู้การพิมพ์ การเลือกฟอนต์ สี ขนาด และการจัดตำแหน่งข้อความ</p></div></div>
+        <div class="content-grid">
+          <div class="info-card"><h3>การพิมพ์ข้อความ</h3><ul><li>ใช้แป้นพิมพ์เพื่อพิมพ์ข้อความ</li><li>กด Enter เพื่อขึ้นบรรทัดใหม่</li><li>ใช้ Backspace หรือ Delete เพื่อลบข้อความ</li></ul></div>
+          <div class="info-card"><h3>การจัดรูปแบบข้อความ</h3><ul><li>ตัวหนา ใช้เน้นหัวข้อสำคัญ</li><li>ตัวเอียง ใช้เน้นคำหรือข้อความพิเศษ</li><li>ขีดเส้นใต้ ใช้เน้นข้อความที่ต้องการให้เห็นชัด</li><li>เปลี่ยนสีและขนาดตัวอักษรให้เหมาะสม</li></ul></div>
+          <div class="info-card"><h3>การจัดตำแหน่ง</h3><p>ข้อความสามารถจัดชิดซ้าย กึ่งกลาง ชิดขวา หรือกระจายเต็มบรรทัด เพื่อให้เอกสารอ่านง่ายและดูเป็นระเบียบ</p></div>
+          <div class="info-card activity"><h3>กิจกรรม</h3><p>พิมพ์หัวข้อ “อาหารที่ฉันชอบ” แล้วเปลี่ยนหัวข้อเป็นตัวหนา สีสวย และจัดกึ่งกลางหน้า</p></div>
+          <div class="info-card"><h3>คำถามทบทวน</h3><div class="mini-quiz"><div class="choice">คำสั่ง Bold ใช้ทำอะไร?</div><div class="choice">การจัดข้อความกึ่งกลางเหมาะกับส่วนใดของเอกสาร?</div></div></div>
         </div>
       </div>
-      <div class="week">
-        <div class="week-number">บทที่ 3</div>
-        <div>
-          <h3>การจัดหน้ากระดาษและย่อหน้า</h3>
-          <p>ตั้งค่าหน้ากระดาษ ระยะขอบ การเยื้องย่อหน้า ระยะบรรทัด และหัวกระดาษท้ายกระดาษ</p>
+    </div>
+
+    <div id="page3" class="page">
+      <div class="lesson-page">
+        <div class="lesson-cover"><span class="lesson-tag">บทที่ 3</span><div><div class="big-icon">📄</div><h2>การจัดหน้ากระดาษและย่อหน้า</h2><p>ตั้งค่าหน้ากระดาษ ระยะขอบ ย่อหน้า ระยะบรรทัด และหัวท้ายกระดาษ</p></div></div>
+        <div class="content-grid">
+          <div class="info-card"><h3>การตั้งค่าหน้ากระดาษ</h3><ul><li>เลือกขนาดกระดาษ เช่น A4</li><li>เลือกแนวตั้งหรือแนวนอน</li><li>กำหนดระยะขอบบน ล่าง ซ้าย ขวา</li></ul></div>
+          <div class="info-card"><h3>การจัดย่อหน้า</h3><p>การเยื้องย่อหน้าและกำหนดระยะบรรทัดช่วยให้ข้อความอ่านง่าย ไม่แน่นเกินไป และเหมาะสำหรับงานรายงาน</p></div>
+          <div class="info-card"><h3>หัวกระดาษและท้ายกระดาษ</h3><p>ใช้ใส่ชื่อรายงาน ชื่อผู้จัดทำ เลขหน้า หรือข้อมูลที่ต้องการให้แสดงซ้ำทุกหน้า</p></div>
+          <div class="info-card activity"><h3>กิจกรรม</h3><p>สร้างเอกสาร 1 หน้า ตั้งค่ากระดาษ A4 ใส่หัวข้อ และจัดย่อหน้าให้มีระยะบรรทัดเหมาะสม</p></div>
+          <div class="info-card"><h3>คำถามทบทวน</h3><div class="mini-quiz"><div class="choice">Margin หมายถึงอะไร?</div><div class="choice">หัวกระดาษเหมาะสำหรับใส่ข้อมูลแบบใด?</div></div></div>
         </div>
       </div>
-      <div class="week">
-        <div class="week-number">บทที่ 4</div>
-        <div>
-          <h3>การแทรกรูปภาพ ตาราง และวัตถุ</h3>
-          <p>ฝึกเพิ่มภาพประกอบ จัดตำแหน่งภาพ สร้างตาราง และตกแต่งเอกสารให้น่าสนใจ</p>
+    </div>
+
+    <div id="page4" class="page">
+      <div class="lesson-page">
+        <div class="lesson-cover"><span class="lesson-tag">บทที่ 4</span><div><div class="big-icon">🖼️</div><h2>การแทรกรูปภาพ ตาราง และวัตถุ</h2><p>เพิ่มภาพประกอบ สร้างตาราง และตกแต่งเอกสารให้น่าสนใจ</p></div></div>
+        <div class="content-grid">
+          <div class="info-card"><h3>การแทรกรูปภาพ</h3><ul><li>แทรกรูปจากเครื่องหรืออินเทอร์เน็ต</li><li>ปรับขนาดรูปให้เหมาะสม</li><li>จัดตำแหน่งภาพให้สัมพันธ์กับข้อความ</li></ul></div>
+          <div class="info-card"><h3>การสร้างตาราง</h3><p>ตารางประกอบด้วยแถวและคอลัมน์ เหมาะสำหรับจัดข้อมูล เช่น ตารางเรียน รายการอุปกรณ์ หรือคะแนน</p></div>
+          <div class="info-card"><h3>การตกแต่งวัตถุ</h3><ul><li>ใส่สีพื้นหลัง</li><li>เพิ่มเส้นขอบ</li><li>ปรับรูปแบบตารางให้สวยงาม</li></ul></div>
+          <div class="info-card activity"><h3>กิจกรรม</h3><p>สร้างตารางเรียน 1 ตาราง พร้อมใส่สีหัวตารางและจัดข้อความให้อ่านง่าย</p></div>
+          <div class="info-card"><h3>คำถามทบทวน</h3><div class="mini-quiz"><div class="choice">ตารางเหมาะกับข้อมูลลักษณะใด?</div><div class="choice">เพราะเหตุใดรูปภาพจึงช่วยให้เอกสารน่าสนใจขึ้น?</div></div></div>
         </div>
       </div>
-      <div class="week">
-        <div class="week-number">บทที่ 5</div>
-        <div>
-          <h3>การสร้างรายงานอย่างมืออาชีพ</h3>
-          <p>สร้างปกรายงาน สารบัญ เลขหน้า บรรณานุกรมเบื้องต้น และส่งออกไฟล์เป็น PDF</p>
+    </div>
+
+    <div id="page5" class="page">
+      <div class="lesson-page">
+        <div class="lesson-cover"><span class="lesson-tag">บทที่ 5</span><div><div class="big-icon">🏆</div><h2>การสร้างรายงานอย่างมืออาชีพ</h2><p>สร้างปกรายงาน สารบัญ เลขหน้า บรรณานุกรมเบื้องต้น และส่งออกไฟล์ PDF</p></div></div>
+        <div class="content-grid">
+          <div class="info-card"><h3>องค์ประกอบรายงาน</h3><ul><li>ปกรายงาน</li><li>คำนำหรือบทนำ</li><li>สารบัญ</li><li>เนื้อหา</li><li>บรรณานุกรมเบื้องต้น</li></ul></div>
+          <div class="info-card"><h3>การใส่เลขหน้า</h3><p>เลขหน้าช่วยให้เอกสารเป็นระเบียบ ค้นหาข้อมูลได้ง่าย และเหมาะกับรายงานหลายหน้า</p></div>
+          <div class="info-card"><h3>การบันทึกไฟล์</h3><p>ควรบันทึกไฟล์ต้นฉบับเป็น .docx หรือไฟล์เอกสาร และส่งออกเป็น PDF เพื่อให้รูปแบบไม่เพี้ยน</p></div>
+          <div class="info-card activity"><h3>กิจกรรมชิ้นงาน</h3><p>สร้างรายงานเรื่อง “อาชีพในฝัน” 1 หน้า มีหัวข้อ เนื้อหา รูปภาพ ตาราง และส่งออกเป็น PDF</p></div>
+          <div class="info-card"><h3>คำถามทบทวน</h3><div class="mini-quiz"><div class="choice">ทำไมควรส่งงานเป็น PDF?</div><div class="choice">รายงานที่ดีควรมีองค์ประกอบอะไรบ้าง?</div></div></div>
         </div>
       </div>
+    </div>
+
+    <div class="nextbar">
+      <button class="btn btn-secondary" onclick="prevLesson()">⬅️ บทก่อนหน้า</button>
+      <button class="btn btn-primary" onclick="nextLesson()">บทถัดไป ➡️</button>
     </div>
   </section>
 
-  <section id="activities">
-    <div class="section-title">
-      <h2>กิจกรรมการเรียนรู้</h2>
-      <p>เน้นลงมือทำจริง สนุก และเหมาะกับนักเรียน ม.1</p>
-    </div>
-    <div class="activity-box">
-      <div>
-        <h2 style="font-size:34px;margin:0 0 12px">ภารกิจนักออกแบบเอกสารรุ่นเยาว์</h2>
-        <p style="color:#5d6980;line-height:1.8">
-          ให้นักเรียนเลือกหัวข้อที่สนใจ แล้วสร้างเอกสาร 1 หน้า โดยใช้ทักษะการจัดรูปแบบข้อความ
-          แทรกรูปภาพ และจัดวางองค์ประกอบให้สวยงาม
-        </p>
-        <a class="btn btn-primary" href="#quiz">ลองทำแบบทดสอบ</a>
-      </div>
-      <div class="activity-list">
-        <div class="activity-item"><b>1</b><span>พิมพ์หัวข้อและเนื้อหาอย่างน้อย 2 ย่อหน้า</span></div>
-        <div class="activity-item"><b>2</b><span>ใส่รูปภาพประกอบอย่างน้อย 1 ภาพ</span></div>
-        <div class="activity-item"><b>3</b><span>สร้างตารางสรุปข้อมูลอย่างน้อย 1 ตาราง</span></div>
-        <div class="activity-item"><b>4</b><span>บันทึกไฟล์และส่งออกเป็น PDF</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="quiz">
-    <div class="section-title">
-      <h2>แบบทดสอบสั้นท้ายบท</h2>
-      <p>กดที่คำถามเพื่อดูแนวคำตอบ</p>
-    </div>
-    <div class="quiz">
-      <details>
-        <summary>1. โปรแกรมประมวลผลคำใช้ทำอะไร?</summary>
-        <p>ใช้สร้าง แก้ไข จัดรูปแบบ และพิมพ์เอกสาร เช่น รายงาน จดหมาย ใบงาน และเอกสารประกอบการเรียน</p>
-      </details>
-      <details>
-        <summary>2. คำสั่งตัวหนา ตัวเอียง และขีดเส้นใต้ ช่วยเรื่องใด?</summary>
-        <p>ช่วยเน้นข้อความสำคัญ ทำให้เอกสารอ่านง่ายและดูเป็นระเบียบมากขึ้น</p>
-      </details>
-      <details>
-        <summary>3. เหตุใดจึงควรบันทึกไฟล์เป็น PDF ก่อนส่งงาน?</summary>
-        <p>เพราะ PDF ช่วยให้รูปแบบเอกสารคงที่ เปิดดูได้ง่าย และลดปัญหาฟอนต์หรือรูปแบบเพี้ยน</p>
-      </details>
-      <details>
-        <summary>4. การแทรกตารางเหมาะกับข้อมูลแบบใด?</summary>
-        <p>เหมาะกับข้อมูลที่ต้องการเปรียบเทียบหรือจัดเป็นแถวและคอลัมน์ เช่น ตารางคะแนน ตารางเวลา หรือรายการอุปกรณ์</p>
-      </details>
-    </div>
-  </section>
-
-  <footer id="contact" class="footer">
+  <footer class="footer">
     <h2>รายวิชาโปรแกรมประมวลผลคำ ม.1</h2>
     <p>กลุ่มสาระการเรียนรู้วิทยาศาสตร์และเทคโนโลยี</p>
     <p>พัฒนาเว็บไซต์โดยครูผู้สอน | ใช้สำหรับประกอบการจัดการเรียนรู้</p>
   </footer>
-  
-  <!-- ================= วิธีอัปขึ้น GitHub ================= -->
-  <!--
-  1. เข้าเว็บ https://github.com แล้วสมัคร/ล็อกอิน
-  2. กด New Repository
-  3. ตั้งชื่อเช่น: word-m1-website
-  4. กด Create Repository
-  5. กด Upload files
-  6. อัปโหลดไฟล์ index.html นี้
-  7. กด Commit changes
-  8. ไปที่ Settings > Pages
-  9. เลือก Branch: main และ Folder: /root
-  10. กด Save
-  11. รอ 1-2 นาที จะได้ลิงก์เว็บไซต์ เช่น
-     https://username.github.io/word-m1-website/
-  -->
+
+  <script>
+    let currentLesson = 1;
+    function openLesson(num){
+      currentLesson = num;
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('page'+num).classList.add('active');
+      document.getElementById('tab'+num).classList.add('active');
+      document.getElementById('lessons').scrollIntoView({behavior:'smooth'});
+    }
+    function nextLesson(){ openLesson(currentLesson >= 5 ? 1 : currentLesson + 1); }
+    function prevLesson(){ openLesson(currentLesson <= 1 ? 5 : currentLesson - 1); }
+    function goHome(){ document.getElementById('home').scrollIntoView({behavior:'smooth'}); }
+    document.addEventListener('DOMContentLoaded', () => openLesson(1));
+  </script>
 </body>
 </html>
