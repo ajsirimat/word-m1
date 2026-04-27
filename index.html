@@ -53,7 +53,21 @@
     .nextbar{margin-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.nextbar button{min-width:140px}
     .overview{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:#fff;border:1px solid var(--border);border-radius:24px;padding:24px;box-shadow:0 14px 35px rgba(20,35,80,.08)}.icon{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;font-size:27px;margin-bottom:14px;background:linear-gradient(135deg,rgba(255,111,174,.15),rgba(90,167,255,.18))}.card p,.card li{color:#5a667d;line-height:1.75}
     .footer{margin-top:44px;background:#10192d;color:white;padding:36px 22px;text-align:center}.footer p{margin:8px 0;color:#d6def0}
-    @media(max-width:930px){.hero,.lesson-page{grid-template-columns:1fr}.lesson-tabs{grid-template-columns:repeat(2,1fr)}.overview{grid-template-columns:1fr 1fr}.menu{display:none}}
+
+
+    /* ===== VIDEO PRO SECTION ===== */
+    .video-pro{max-width:1180px;margin:auto;padding:54px 22px}
+    .video-box{background:#fff;border:1px solid var(--border);border-radius:32px;padding:28px;box-shadow:var(--shadow)}
+    .video-layout{display:grid;grid-template-columns:1.35fr .65fr;gap:24px;align-items:start}
+    .video-frame{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:24px;box-shadow:0 18px 40px rgba(20,35,80,.18);background:#0f172a}
+    .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .video-list{display:grid;gap:12px}
+    .video-btn{border:1px solid var(--border);background:linear-gradient(180deg,#fff,#f8fbff);border-radius:18px;padding:14px;text-align:left;font-family:inherit;cursor:pointer;transition:.2s;color:#334155}
+    .video-btn:hover,.video-btn.active{transform:translateY(-2px);color:#fff;background:linear-gradient(135deg,var(--pink),var(--blue));box-shadow:0 12px 24px rgba(90,167,255,.22)}
+    .video-btn strong{display:block;font-size:15px;margin-bottom:3px}
+    .video-btn span{font-size:13px;opacity:.86;line-height:1.45}
+    .video-note{margin-top:18px;border-radius:20px;padding:16px 18px;background:linear-gradient(135deg,#fff0f7,#eef6ff);border:1px solid #eef2ff;color:#526070;line-height:1.7}
+    @media(max-width:930px){.hero,.lesson-page,.video-layout{grid-template-columns:1fr}.lesson-tabs{grid-template-columns:repeat(2,1fr)}.overview{grid-template-columns:1fr 1fr}.menu{display:none}}
     @media(max-width:620px){.overview{grid-template-columns:1fr}.tool-row{grid-template-columns:1fr 1fr}.lesson-tabs{grid-template-columns:1fr}.lesson-page{padding:18px}.lesson-cover{min-height:auto}.nav-inner{align-items:flex-start}.brand small{display:block}}
   </style>
 </head>
@@ -66,6 +80,7 @@
       </a>
       <nav class="menu">
         <button onclick="goHome()">หน้าแรก</button>
+        <button onclick="goVideos()">วิดีโอ</button>
         <button onclick="openLesson(1)">บทที่ 1</button>
         <button onclick="openLesson(2)">บทที่ 2</button>
         <button onclick="openLesson(3)">บทที่ 3</button>
@@ -83,6 +98,7 @@
       <div class="hero-actions">
         <button class="btn btn-primary" onclick="openLesson(1)">🚀 เริ่มเรียนบทที่ 1</button>
         <a class="btn btn-secondary" href="#lessons">📚 เลือกหัวข้อเรียน</a>
+        <button class="btn btn-secondary" onclick="goVideos()">🎬 ดูวิดีโอ</button>
       </div>
     </div>
     <div class="hero-card">
@@ -97,6 +113,61 @@
       </div>
     </div>
   </main>
+
+  <section id="videos" class="video-pro">
+    <div class="section-title">
+      <h2>🎬 วิดีโอบทเรียนแยกตามบท</h2>
+      <p>เลือกวิดีโอให้ตรงกับบทเรียนที่ต้องการสอน นักเรียนสามารถเรียนตามลำดับได้จาก Playlist</p>
+    </div>
+
+    <div class="video-box">
+      <div class="video-layout">
+        <div>
+          <div class="video-frame">
+            <iframe
+              id="lessonVideo"
+              src="https://www.youtube.com/embed/videoseries?list=PL7iZwxUnHWsTchZpKP39E9aDKFAe7k9pG&index=0"
+              title="วิดีโอบทเรียน Microsoft Word ม.1"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-note">
+            💡 <strong>คำแนะนำสำหรับครู:</strong> เปิดวิดีโอก่อนเริ่มบทเรียน แล้วให้นักเรียนทำกิจกรรมในแต่ละบทหลังรับชม
+          </div>
+        </div>
+
+        <div class="video-list">
+          <button class="video-btn active" onclick="changeVideo(0,this); openLessonSilent(1);">
+            <strong>บทที่ 1 : รู้จักโปรแกรม</strong>
+            <span>ความหมาย ประโยชน์ และตัวอย่างโปรแกรมประมวลผลคำ</span>
+          </button>
+
+          <button class="video-btn" onclick="changeVideo(1,this); openLessonSilent(2);">
+            <strong>บทที่ 2 : จัดรูปแบบข้อความ</strong>
+            <span>การพิมพ์ ฟอนต์ สี ขนาด ตัวหนา ตัวเอียง และการจัดตำแหน่ง</span>
+          </button>
+
+          <button class="video-btn" onclick="changeVideo(2,this); openLessonSilent(3);">
+            <strong>บทที่ 3 : จัดหน้ากระดาษ</strong>
+            <span>ขนาดกระดาษ ระยะขอบ ย่อหน้า ระยะบรรทัด และหัวท้ายกระดาษ</span>
+          </button>
+
+          <button class="video-btn" onclick="changeVideo(3,this); openLessonSilent(4);">
+            <strong>บทที่ 4 : รูปภาพและตาราง</strong>
+            <span>การแทรกรูปภาพ การปรับขนาดภาพ และการสร้างตาราง</span>
+          </button>
+
+          <button class="video-btn" onclick="changeVideo(4,this); openLessonSilent(5);">
+            <strong>บทที่ 5 : สร้างรายงาน</strong>
+            <span>ปกรายงาน สารบัญ เลขหน้า บรรณานุกรม และการส่งออก PDF</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <section id="about">
     <div class="section-title">
@@ -213,7 +284,22 @@
     function nextLesson(){ openLesson(currentLesson >= 5 ? 1 : currentLesson + 1); }
     function prevLesson(){ openLesson(currentLesson <= 1 ? 5 : currentLesson - 1); }
     function goHome(){ document.getElementById('home').scrollIntoView({behavior:'smooth'}); }
-    document.addEventListener('DOMContentLoaded', () => openLesson(1));
+
+    function openLessonSilent(num){
+      currentLesson = num;
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('page'+num).classList.add('active');
+      document.getElementById('tab'+num).classList.add('active');
+    }
+    function goVideos(){ document.getElementById('videos').scrollIntoView({behavior:'smooth'}); }
+    function changeVideo(index, btn){
+      const video = document.getElementById('lessonVideo');
+      video.src = `https://www.youtube.com/embed/videoseries?list=PL7iZwxUnHWsTchZpKP39E9aDKFAe7k9pG&index=${index}`;
+      document.querySelectorAll('.video-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    document.addEventListener('DOMContentLoaded', () => openLessonSilent(1));
   </script>
 </body>
 </html>
