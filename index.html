@@ -126,7 +126,7 @@
           <div class="video-frame">
             <iframe
               id="lessonVideo"
-              src="https://www.youtube.com/embed/videoseries?list=PL7iZwxUnHWsTchZpKP39E9aDKFAe7k9pG&index=0"
+              src=""
               title="วิดีโอบทเรียน Microsoft Word ม.1"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin"
@@ -293,13 +293,70 @@
       document.getElementById('tab'+num).classList.add('active');
     }
     function goVideos(){ document.getElementById('videos').scrollIntoView({behavior:'smooth'}); }
+
+    /* =====================================================
+       ✅ ตั้งค่าลิงก์วิดีโอเองตรงนี้
+       วางลิงก์ YouTube แบบปกติได้เลย เช่น
+       - https://www.youtube.com/watch?v=VIDEO_ID
+       - https://youtu.be/VIDEO_ID
+       - https://www.youtube.com/embed/VIDEO_ID
+       - https://www.youtube.com/playlist?list=PLAYLIST_ID
+       ===================================================== */
+    const VIDEO_LIST = [
+      "https://www.youtube.com/embed/videoseries?list=PL7iZwxUnHWsTchZpKP39E9aDKFAe7k9pG&index=0", // บทที่ 1
+      "https://www.youtube.com/embed/videoseries?list=PL7iZwxUnHWsTchZpKP39E9aDKFAe7k9pG&index=1", // บทที่ 2
+      "https://www.youtube.com/embed/videoseries?list=PL7iZwxUnHWsTchZpKP39E9aDKFAe7k9pG&index=2", // บทที่ 3
+      "https://www.youtube.com/embed/videoseries?list=PL7iZwxUnHWsTchZpKP39E9aDKFAe7k9pG&index=3", // บทที่ 4
+      "https://www.youtube.com/embed/videoseries?list=PL7iZwxUnHWsTchZpKP39E9aDKFAe7k9pG&index=4"  // บทที่ 5
+    ];
+
+    function convertToEmbedUrl(url){
+      if(!url || url.trim() === '') return 'about:blank';
+      url = url.trim();
+
+      if(url.includes('youtube.com/embed/')) return url;
+
+      if(url.includes('youtube.com/playlist')){
+        try{
+          const u = new URL(url);
+          const listId = u.searchParams.get('list');
+          return listId ? `https://www.youtube.com/embed/videoseries?list=${listId}` : url;
+        }catch(e){ return url; }
+      }
+
+      if(url.includes('youtu.be/')){
+        try{
+          const u = new URL(url);
+          const videoId = u.pathname.replace('/', '');
+          return `https://www.youtube.com/embed/${videoId}`;
+        }catch(e){ return url; }
+      }
+
+      if(url.includes('youtube.com/watch')){
+        try{
+          const u = new URL(url);
+          const videoId = u.searchParams.get('v');
+          const listId = u.searchParams.get('list');
+          if(videoId && listId) return `https://www.youtube.com/embed/${videoId}?list=${listId}`;
+          if(videoId) return `https://www.youtube.com/embed/${videoId}`;
+        }catch(e){ return url; }
+      }
+
+      return url;
+    }
+
     function changeVideo(index, btn){
       const video = document.getElementById('lessonVideo');
-      video.src = `https://www.youtube.com/embed/videoseries?list=PL7iZwxUnHWsTchZpKP39E9aDKFAe7k9pG&index=${index}`;
+      video.src = convertToEmbedUrl(VIDEO_LIST[index]);
+
       document.querySelectorAll('.video-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      if(btn) btn.classList.add('active');
     }
-    document.addEventListener('DOMContentLoaded', () => openLessonSilent(1));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      openLessonSilent(1);
+      changeVideo(0, document.querySelector('.video-btn'));
+    });
   </script>
 </body>
 </html>
